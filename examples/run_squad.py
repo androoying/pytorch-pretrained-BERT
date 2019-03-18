@@ -1022,7 +1022,11 @@ def main():
         model = BertForQuestionAnswering(config)
         model.load_state_dict(torch.load(output_model_file))
     else:
-        model = BertForQuestionAnswering.from_pretrained(args.bert_model)
+        output_config_file = os.path.join(os.getcwd(), 'testone/' + CONFIG_NAME)
+        output_model_file = os.path.join(os.getcwd(), 'testone/' + WEIGHTS_NAME)
+        config = BertConfig(output_config_file)
+        model.load_state_dict(torch.load(output_model_file))
+        # model = BertForQuestionAnswering.from_pretrained(args.bert_model)
 
     model.to(device)
 
